@@ -1,7 +1,7 @@
 /*
 * The MIT License (MIT)
 *
-* Copyright (c) 2018 Playtika
+* Copyright (c) 2019 Playtika
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
  */
-package com.playtika.test.redis;
+package com.playtika.test.rabbitmq;
 
 import com.playtika.test.common.properties.CommonContainerProperties;
 import lombok.Data;
@@ -30,12 +30,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ConfigurationProperties("embedded.redis")
-public class RedisProperties extends CommonContainerProperties {
-    static final String BEAN_NAME_EMBEDDED_REDIS = "embeddedRedis";
-    public String dockerImage = "redis:4.0.12-alpine";
-    public String user = "root";
-    public String password = "passw";
-    public String host = "localhost";
-    public int port = 6379;
+@ConfigurationProperties("embedded.rabbitmq")
+public class RabbitMQProperties extends CommonContainerProperties {
+    public static final String BEAN_NAME_EMBEDDED_RABBITMQ = "embeddedRabbitMq";
+    private String dockerImage = "rabbitmq:3-alpine";
+
+    private String user = "rabbitmq";
+    private String password = "rabbitmq";
+    private String host = "localhost";
+    private String vhost = "/";
+    private int port = 5672;
 }
